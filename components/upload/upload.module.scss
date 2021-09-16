@@ -1,0 +1,69 @@
+
+.thumbsContainer{
+ display: grid;
+ grid-template-columns: repeat(3, minmax(0, 1fr));
+ align-items: start;
+ gap: 8px;
+}
+
+.thumbs {
+  display: inline-flex;
+  border-radius: 2;
+  border: 1px solid #eaeaea;
+  margin-bottom: 8px;
+  margin-right: 8px;
+  padding: 4px;
+  
+  .thumbInner {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    pointer-events: none;
+
+    img {
+      height: auto;
+      max-width: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+  }
+}
+
+.clicked{
+  position: relative;
+  
+    &::after {
+      content: '✔';
+      position: absolute;
+      right: 1rem;
+      color: white;
+      background-color: teal;
+      padding: 0.3rem 0.5rem;
+      border-radius: 50%;
+      top: 1rem;
+    }
+}
+
+.dropzone{
+  height: 300px;
+  border: 2px dotted rgba($color: #000000, $alpha: 0.5);
+  display: grid;
+  place-items: center;
+
+  .wrapper{
+    text-align: center;
+
+    .uploadBtn {
+      cursor: pointer;
+      padding: .8rem 1.8rem;
+      background-color: teal;
+      border: 0;
+      border-radius: 5px;
+      color: white;
+      letter-spacing: 2px;
+      box-shadow: 0px 0px 3px teal;
+      text-align: center;
+    }
+  }
+}
+
