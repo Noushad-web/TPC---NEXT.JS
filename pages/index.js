@@ -1,7 +1,6 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css';
-import UploadWrapper from '../components/upload/uploadWrapper';
+import  { UploadWrapper } from '../components/upload/uploadWrapper';
 
 export default function Home() {
   return (    

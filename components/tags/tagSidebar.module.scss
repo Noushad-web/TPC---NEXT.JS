@@ -1,0 +1,64 @@
+@mixin themeButton {
+  cursor: pointer;
+  padding: .8rem 1.5rem;
+  background-color: teal;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  letter-spacing: 2px;
+  box-shadow: 0px 0px 3px teal;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.sideContainer{
+  min-width: 400px;
+  
+  position: sticky;
+  // right: 0;
+  top: 0;
+  padding: 2rem;
+  background-color: teal;
+  color: white;
+  min-height: 100vh;  
+  transition: all .2s ease;
+
+  h1{
+    text-align: center;
+  }
+
+  .wrapper{
+
+    padding: 1rem 0 0 1rem;
+    margin-top: 10rem;
+
+    .tagAssigned{
+      @include themeButton();
+      background-color : white;
+      color: teal;      
+      border: 1px solid currentColor;
+      box-shadow: 0 0 2px rgba(0,0,0,0.5);
+      transition: box-shadow .2s ease;
+
+      &:hover,
+      &:focus{
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+    }
+
+    .finish{
+      @include themeButton();      
+      border: 1px solid white;
+      font-weight: 600;      
+      margin-left: 1rem;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+      transition: box-shadow .2s ease;
+
+      &:hover,
+      &:focus {
+       box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+

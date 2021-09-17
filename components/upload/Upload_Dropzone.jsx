@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import style from './upload.module.scss';
+import { useDispatch } from 'react-redux';
+import { img__isClicked } from '../../actions/index';
 
 const UploadDropzone = (props) => {
-  const [files, setFiles] = useState([]);
-  let clickedImg = [];
-
-  const clickHandler = (e) =>{
-    if (e.target.className.search('clicked') === -1){      
-      e.target.classList.add(`${style.clicked}`);
+  const dispatch = useDispatch();
+  const [files, setFiles] = useState([]);  
+  let [clickedImg, setClickedImg] = useState([]);
+  
+  const clickHandler = (e) =>{    
+    
+    // tick symbol logic
+    if (e.target.className.search('clicked') === -1){
       clickedImg.push(e.target);
-    }else{
-      e.target.classList.remove(`${style.clicked}`);      
+      e.target.classList.add(`${style.clicked}`);
+      dispatch(img__isClicked(true)) // dispatch the sidebar action
+    }
+    else{
+      e.target.classList.remove(`${style.clicked}`);
+      clickedImg.map((element, index) => {
+        if(e.target === element){
+          clickedImg.splice(index, 1);
+        }
+        if (clickedImg.length === 0) dispatch(img__isClicked(false))  //dispatch the sidebar
+      })
     }
   }
 
@@ -28,14 +41,10 @@ const UploadDropzone = (props) => {
     <figure onClick={clickHandler} className={style.thumbs} data-src={file.src} data-name={file.name} data-id={file.lastModified} data-size={(file.size)/1000} key={file.name}>
       <div className={style.thumbInner}>
         <img src={file.src} />
-        <span>{(file.size)/1000}kb</span>
+        <span>{(file.size)/1000} kb</span>
       </div>
     </figure>
   ));
-
-  useEffect(()=>{
-    console.log(clickedImg);
-  }, [clickHandler])
 
   useEffect(() => () => {
     // Make sure to revoke the data uris to avoid memory leaks    
@@ -43,7 +52,7 @@ const UploadDropzone = (props) => {
   }, [files]);
 
   return (
-    <section className="container">
+    <div className="container">
       <div {...getRootProps({ className: style.dropzone })}>
         <input {...getInputProps()} />
         <div className={style.wrapper}>
@@ -54,7 +63,7 @@ const UploadDropzone = (props) => {
       <aside className={style.thumbsContainer}>
         {thumbs}
       </aside>
-    </section>
+    </div>
   );
 }
 

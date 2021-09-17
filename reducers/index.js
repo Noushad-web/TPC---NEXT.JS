@@ -1,8 +1,10 @@
 import { combineReducers } from "redux";
-import dropzoneReducer from "./dropzoneReducer";
+import img__isClicked from './img__isClicked';
+import feature__tag from './feature__tag';
 
 const rootReducers = combineReducers({
-  dropzoneReducer
+  img__isClicked,
+  feature__tag
 })
 
 export default rootReducers;
