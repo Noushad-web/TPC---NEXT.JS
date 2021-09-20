@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button_design';
 import style from './button.module.scss';
 import { useDispatch } from 'react-redux';
-import { feature__tag } from '../../../actions';
+import { feature__tag, year__tag } from '../../../actions';
 
 const Feature_button = () => {
 

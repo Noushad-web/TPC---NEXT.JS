@@ -5,7 +5,7 @@ export const img__isClicked = (booleanValue)=>{
   }
 }
 
-export const feature__tag = (tag) => {
+export const feature__tag = (tag) => {  
   return{
     type: 'FEATURE__TAG',
     tag
@@ -14,7 +14,7 @@ export const feature__tag = (tag) => {
 
 export const year__tag = (tag) => {
   return{
-    type: 'FEATURE__TAG',
+    type: 'YEAR__TAG',
     tag
   }
 }

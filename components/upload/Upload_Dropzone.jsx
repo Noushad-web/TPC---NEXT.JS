@@ -1,32 +1,39 @@
 import React, { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import style from './upload.module.scss';
-import { useDispatch } from 'react-redux';
-import { img__isClicked } from '../../actions/index';
+import { useDispatch, useSelector } from 'react-redux';
+import { img__isClicked, img__data } from '../../actions/index';
 
 const UploadDropzone = (props) => {
   const dispatch = useDispatch();
   const [files, setFiles] = useState([]);  
   let [clickedImg, setClickedImg] = useState([]);
-  
-  const clickHandler = (e) =>{    
+
+  const clickHandler = (e) =>{
     
     // tick symbol logic
     if (e.target.className.search('clicked') === -1){
-      clickedImg.push(e.target);
+      // clickedImg.push(e.target);
+      setClickedImg((prevState) => [...prevState, e.target]);
       e.target.classList.add(`${style.clicked}`);
-      dispatch(img__isClicked(true)) // dispatch the sidebar action
+      dispatch(img__isClicked(true)) // dispatch the sidebar action      
     }
     else{
-      e.target.classList.remove(`${style.clicked}`);
-      clickedImg.map((element, index) => {
-        if(e.target === element){
-          clickedImg.splice(index, 1);
-        }
+      if(clickedImg !== undefined){        
+        e.target.classList.remove(`${style.clicked}`);
+        const filteredArray = clickedImg.filter((item, index, clickedImg)=>{
+          return item !== e.target;
+        })        
+        setClickedImg(filteredArray);
         if (clickedImg.length === 0) dispatch(img__isClicked(false))  //dispatch the sidebar
-      })
+      }
     }
   }
+
+  useEffect(()=>{    
+    dispatch(img__data(clickedImg))
+  }, [clickedImg])
+
 
   const { getRootProps, getInputProps } = useDropzone({
     accept: 'image/*',

@@ -16,8 +16,8 @@ export const UploadWrapper = () => {
     return (
     <>
       <div className={style.componentWrapper}>
-        <section >
-          <UploadDropzone />        
+        <section>
+          <UploadDropzone />
         </section>
         <aside>
           {(img__isClicked === true) ? <TagsWrapper /> : null }
