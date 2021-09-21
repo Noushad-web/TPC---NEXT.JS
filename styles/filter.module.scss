@@ -1,0 +1,52 @@
+@mixin button {
+   padding: .5rem 1.5rem;
+   border-radius: 5px;
+   border: 1px solid white;
+   font-size : 1.05rem;
+   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.section{
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  .textCenter {
+    text-align: center;
+  }
+
+  form{
+    
+    input{
+     @include button();
+     min-width : 500px;
+    }
+
+    button{
+      @include button();
+      margin-left: 1rem;
+      cursor: pointer;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      background-color: white;
+      color: teal;
+
+      &:hover{
+        background-color: teal;
+        border: 1px solid white;
+        color: white;
+      }
+    }
+  }
+
+  .data{
+    display: flex;
+    flex-wrap: wrap;
+    figure{
+      width: 400px;
+      img {
+        height: auto;
+        max-width: 100%;
+        object-fit: cover;       
+      }
+    }
+  }
+}

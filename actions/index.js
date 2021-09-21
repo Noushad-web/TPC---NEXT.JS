@@ -25,3 +25,17 @@ export const img__data = dataArray =>{
     dataArray
   }
 }
+
+export const reset__data = counter =>{
+  return {    
+    type: 'RESET__IMG__DATA',
+    counter
+  }
+}
+
+export const saved__data = data => {
+  return{
+    type: 'SAVED__DATA',
+    data
+  }
+}
